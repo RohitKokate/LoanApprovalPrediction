@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+	<title>Loan Approval Prediction</title>
+	<!-- <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='/css/style.css')}}"> -->
+	<style type="text/css">
+		
+		body{height: 100%;
+			/*background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);*/
+			background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);
+			/*background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);*/
+			background-size: cover;
+			background-attachment: fixed;}
+
+		form{margin: auto;
+			max-width: 600px;}
+
+		h2{font-family: calibri;
+			font-size: 28px;
+			text-align: center;
+			/*padding: 0px;*/}
+
+		label{font-family: calibri;
+			font-size: 20px;
+			padding: 7px 5px 17px 5px;
+			display: inline-block;
+			font-weight: bold;}
+
+		input, select, textarea{width: 65%;
+			padding: 8px;
+			border-radius: 5px;
+			box-sizing: border-box;
+			float: right;
+			resize: vertical; 
+			border: none;
+			background: transparent;
+			font-family:calibri;
+			font-size: 18px;
+			color: black;}
+
+		.form__submit {padding: 10px 30px;
+			background-color: unset;
+			border: 2px solid #1c2023;
+			border-radius: 4px;
+			float: right;
+			cursor: pointer; }
+
+		.form__submit:hover {background-color: #1c2023;
+			color: white; }
+
+		.result {font-family: calibri;
+			font-size: 20px;
+			padding-top: 5px;
+			padding-left: 5px; }
+
+		::placeholder{ color:black; }
+	</style>
+</head>
+<body>
+	
+	<form autocomplete="off" action="{{ url_for('predict')}}" method="POST">
+			
+		<h2>Enter your details to predict your loan eligibility</h2>
+
+			<label>Gender</label>
+	    	<select id="1" name="Gender">
+	      		<option>Male</option>
+	      		<option>Female</option>
+	    	</select>
+    		<br>
+	
+			<label>Marital Status</label>
+	    	<select id="2" name="Marital_Status" >
+	      		<option>Married</option>
+	      		<option>Unmarried</option>
+	    	</select>
+			<br>
+
+			<label>Dependents</label>
+	    	<select id="3" name="Dependents" >
+	      		<option>0</option>
+	      		<option>1</option>
+	      		<option>2</option>
+	      		<option>3 or more</option>
+	    	</select>
+    		<br> 
+
+			<label>Education</label>
+	    	<select id="4" name="Education" >
+	     		<option>Graduate</option>
+	      		<option>Not Graduate</option>
+	    	</select>
+    		<br>
+		
+			<label>Self Employed</label>
+	    	<select id="5" name="Self_Employed" >
+	      		<option>Yes</option>
+	      		<option>No</option>
+	    	</select>
+    		<br>
+		
+			<label for="Applicant Income">Applicant Income</label>
+	    	<input type="text" id="6" name="Applicant_Income" placeholder="e.g: 50000" required="required" >
+			<br>
+		
+			<label for="Coapplicant Income">Coapplicant Income</label>
+	    	<input type="text" id="7" name="Coapplicant_Income" placeholder="e.g: 25000" required="required" >
+	    	<br>
+		
+			<label for="Loan Amount">Loan Amount</label>
+    		<input type="text" id="8" name="Loan_Amount" placeholder="e.g: 1500000" required="required" >
+    		<br>
+		
+			<label for="Loan Tenure">Loan Tenure</label>
+    		<input type="text" id="9" name="Loan_Tenure" placeholder="Total number of months of tenure" required="required" >
+    		<br>
+		
+			<label>Credit History</label>
+    		<select id="10" name="Credit_History" >
+      			<option>Yes</option>
+      			<option>No</option>
+    		</select>
+    		<br>
+		
+			<label>Property Area</label>
+	    	<select id="11" name="Property_Area" >
+	      		<option>Urban</option>
+	      		<option>Semiurban</option>
+	      		<option>Rural</option>
+	    	</select>
+    		<br>
+		
+			<button type="submit" class="form__submit">Predict</button>
+			<div class="result">{{ prediction_text }}</div>
+					
+	</form>
+
+</body>
+</html>
